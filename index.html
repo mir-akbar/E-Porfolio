@@ -7,28 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mirakbar Inamdar</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="index.js"></script>
     <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("CN1nv1pkEAgCrIopT");
+   })();
+</script>
 </head>
 
 <body>
-    <section id="landing-page">
+    <section id="landing-page" onmousemove="moveBackground(event)">
         <nav>
             <figure>
                 <img class="nav-logo" src="assets/mi-logo.svg" alt="">
             </figure>
             <ul class="nav__link--list">
-                <li class="nav__link">
+                <li class="nav__link" onclick="toggleModal()">
                     <a href="#" class="nav__link--anchor link__hover-effect link__hover-effect--black">About</a>
                 </li>
                 <li class="nav__link">
-                    <a href="#" class="nav__link--anchor
+                    <a href="#projects" class="nav__link--anchor
                     link__hover-effect link__hover-effect--black">Projects</a>
                 </li>
-                <li class="nav__link">
+                <li class="nav__link" onclick="toggleModal()">
                     <a href="#" class="nav__link--anchor
                     link__hover-effect link__hover-effect--black">Contact</a>
                 </li>
-                <li class="nav__link click">
+                <li class="nav__link click" onclick="toggleContrast()">
                     <a href="#" class="nav__link--anchor
                     link__hover-effect link__hover-effect--black"><i class="fas fa-adjust"></i></a>
                 </li>
@@ -43,7 +52,7 @@
                     I'm a <b class="color-highlight">Frontend Software Engineer</b> with a strong passion for building
                     web applications with great user experiences.
                     <br>
-                    Here's a bit more <b class="color-highlight">about me</b>.
+                    Here's a bit more <b class="color-highlight click" onclick="toggleModal()">about me</b>.
                 </p>
                 <div class="social__list">
                     <a href="https://www.linkedin.com/in/mirakbarinamdar
@@ -60,12 +69,89 @@
             </div>
         </header>
 
-        <button class="mail__btn click">
-            <i class="fas fa-envelope"></i>
-        </button>
+        <a href="#">
+            <button class="mail__btn click" onclick="toggleModal()">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </a>
         <a href="#projects" class="scroll">
             <div class="scroll__icon click"></div>
         </a>
+
+        <div class="modal">
+            <div class="modal__half modal__about">
+                <h3 class="modal__title modal__title--about">
+                    Here's a bit about me.
+                </h3>
+                <h4 class="modal__sub-title modal__sub-title--about">Frontend Software Engineer.</h4>
+                <p class="modal__para">
+                    Hey there! I'm a <b class="color-highlight">frontend software engineer</b> with a passion for creating stunning and seamless websites. With my expertise in <b class="color-highlight">HTML</b>,<b class="color-highlight"> CSS</b>, and  <b class="color-highlight">JavaScript</b>, I can bring your ideas to life with an immersive user experience.
+                    <br>
+                     As a <b class="color-highlight">fresh</b> talent in the field, I'm always looking for new <b class="color-highlight">challenges</b> and <b class="color-highlight">opportunities</b> to grow my skillset. Let's team up and build something amazing together!
+                </p>
+
+                <div class="modal__languages">
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/240px-HTML5_Badge.svg.png" alt="">
+                        <span class="language__name">HTML</span>
+                    </figure>
+
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/css-131-722685.png" alt="">
+                        <span class="language__name">CSS</span>
+                    </figure>
+
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/javascript-1-225993.png" alt="">
+                        <span class="language__name">Javascript</span>
+                    </figure>
+
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/react-3-1175109.png" alt="">
+                        <span class="language__name">React</span>
+                    </figure>
+                </div>
+            </div>
+            <div class="modal__half modal__contact">
+                <i class="fas fa-times modal__exit click" onclick="toggleModal()"></i>
+                <h3 class="modal__title modal__title--contact">
+                    Let's have a chat!
+                </h3>
+                <h3 class="modal__sub-title modal__sub-title--contact">
+                    I'm currently open to new opportunities.
+                </h3>
+                <form id="contact__form" onsubmit="contact(event)">
+                    <div class="form__item">
+                        <label class="form__item--label">Name</label>
+                        <input class="input" name="user_name" type="text" ></input>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">E-mail</label>
+                        <input class="input" name="user_email" type="email" ></input>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label" >Message</label>
+                        <textarea class="input" name="message" type="text" ></textarea>
+                    </div>
+                    <button id="contact__submit" class="form__submit">Send it my way</button>
+                </form>
+                <div class="modal__overlay modal__overlay--loading">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div class="modal__overlay modal__overlay--success">
+                    Thanks for the message! Looking forward to speaking to you soon.!
+                </div>
+            </div>
+        </div>
+        <img src="assets/semi circle.svg" class="shape shape--0">
+        <img src="assets/circle.svg" class="shape shape--1">
+        <img src="assets/squiggly.svg" class="shape shape--2">
+        <img src="assets/circle.svg" class="shape shape--3">
+        <img src="assets/triangle.svg" class="shape shape--4">
+        <img src="assets/circle.svg" class="shape shape--5">
+        <img src="assets/squiggly.svg" class="shape shape--6">
+        <img src="assets/circle.svg" class="shape shape--7">
+        <img src="assets/semi circle.svg" class="shape shape--8">
     </section>
 
     <section id="projects">
@@ -124,12 +210,12 @@
                                 </p>
                                 <div class="project__description--links">
                                     <a href="https://github.com/mir-akbar/Treact-Clone" target="_blank"
-                                        class="project__description--link">
+                                        class="project__description--link click">
                                         <i class="fab fa-github"></i>
                                     </a>
 
                                     <a href="https://mir-akbar.github.io/Treact-Clone/" target="_blank"
-                                        class="project__description--link">
+                                        class="project__description--link click">
                                         <i class="fas fa-link"></i>
                                     </a>
                                 </div>
@@ -148,16 +234,16 @@
                     <img src="assets/mi-logo.svg" class="footer__logo--img" alt="">
                 </figure>
                 <div class="footer__social--list">
-                    <a href="" class="footer__social--link link__hover-effect link__hover-effect--white">
+                    <a href="https://github.com/mir-akbar" target="_blank" class="footer__social--link link__hover-effect link__hover-effect--white">
                         Github</a>
     
-                    <a href="" class="footer__social--link link__hover-effect link__hover-effect--white">
+                    <a href="https://www.linkedin.com/in/mirakbarinamdar" target="_blank" class="footer__social--link link__hover-effect link__hover-effect--white">
                         LinkedIn</a>
     
-                    <a href="" class="footer__social--link link__hover-effect link__hover-effect--white">
-                        Email</a>
+                    <a href="#" onclick='toggleModal()' class="footer__social--link link__hover-effect link__hover-effect--white" target="_blank">
+                        Contact</a>
     
-                    <a href="" class="footer__social--link link__hover-effect link__hover-effect--white">
+                    <a href=""  class="footer__social--link link__hover-effect link__hover-effect--white" target="_blank">
                         Resume</a>
                 </div>
                 <div class="footer__copyright">Copyright &copy; 2024 Mirakbar Inamdar</div>
